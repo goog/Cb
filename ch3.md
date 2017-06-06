@@ -18,8 +18,10 @@ if auto , the value is indeterminate
 ## static
 
 keyword <code>static</code>  
+  
 Static global variable:  
 A variable declared as static at the top level of a source file (outside any function definitions) is only visible throughout that file  
+  
 Static local variables:  
 Variables declared as static inside a function are statically allocated, thus keep their memory cell throughout all program execution, while having the same scope of visibility as automatic local variables (auto and register), meaning remain local to the function. Hence whatever values the function puts into its static local variables during one call will still be present when the function is called again. [if we get its pointer, then we could use the variable as a global variable in other function][1] 
 
