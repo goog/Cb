@@ -78,7 +78,67 @@ sizeof        |  size                | unary   | 15           | right-to-left
 
 
 sequence point  
+## Pointer
 
+```c
+#include <stdio.h>
+
+//array of pointers
+char *names[] =
+{
+"tom",
+"cat",
+"eac"
+};
+
+
+// array of function pointers
+int (*idle_state[3])();
+
+int main()
+{
+    int i;
+
+    for(i=0;i<3;i++)
+    {
+        printf("name%d is %s.\n", i + 1, names[i]);
+    }
+
+    char test[] = "06077";
+    const char *a = test; //pointer to constant: usual use, restrict the modification to string buffer
+    char const *b = test; // same to above
+
+    //only the c is a constant pointer becase const is nearby c
+    char * const c = test;
+    c = &test + 1; // error demo
+}
+```
+
+## sizeof
+
+```c
+#include <stdio.h>
+
+
+#define my_sizeof(type) (char *)(&type + 1) - (char *)(&type)
+
+typedef struct foo
+{
+int a;
+char b[4];
+} bar;
+
+int main()
+{
+    int array[100];
+    bar bbb;
+
+    printf("size of the array is %ld \n", my_sizeof(array));
+    printf("size of the structure is %ld \n", my_sizeof(bbb));
+
+    //printf("size of the int is %ld \n", my_sizeof(int));
+}
+```
 
 # Functions from libc
 
