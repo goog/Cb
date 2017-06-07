@@ -15,6 +15,16 @@ within a C program.
 if a variable is globel or static, it will be zeroed.
 if auto , the value is indeterminate
 
+## Initialized variables
+**data segment**
+```
+char *p = "of human bondage";
+int main()
+{
+}
+```
+this makes string literal to be stored in initialized read-only area and the character pointer variable in initialized area.
+
 ## static
 
 keyword <code>static</code>  
