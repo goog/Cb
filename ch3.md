@@ -142,6 +142,71 @@ int main()
 
 # Functions from libc
 
+## String
+
+asprintf, strtok_r, getline  
+
+```c
+#include <stdio.h>
+#include <assert.h>
+
+#undef strlen
+
+
+size_t strlen(const char *str)
+{
+    const char *s;
+
+    for(s=str;*s != '\0';s++) ;
+
+    return (size_t)(s - str);
+}
+
+
+char *strcat(char *dest, const char *src)
+{
+    char *rdest = dest;
+
+    for(;*dest;dest++) ;
+
+    while(*dest++ = *src++);
+
+    return rdest;
+}
+
+
+char *strcpy(char *dest, const char *src)
+{
+    assert(dest && src);
+
+    char *rdest = dest;
+
+    while(*dest++ = *src++);
+
+    return rdest;
+}
+
+
+int strcmp(const char *s1, const char *s2)
+{
+    while(*s1)
+    {
+        if(*s1 != *s2)
+        {
+            return *(unsigned char *)s1 - *(unsigned char *)s2;
+        }
+        else
+        {
+            s1++, s2++;
+        }
+    }
+
+    return *(unsigned char *)s1 - *(unsigned char *)s2;
+
+}
+
+```
+
 # Advanced cases
 
 # Drawbacks of C
