@@ -209,6 +209,25 @@ int strcmp(const char *s1, const char *s2)
 
 # Advanced cases
 
+## function return type
+return type defaults to ‘int’  
+```c
+#include <stdio.h>
+#include <limits.h>
+
+foo()
+{
+    return UINT_MAX;
+}
+
+int main()
+{
+    unsigned long int a = foo();
+    printf("a %ld.\n", a);
+
+}
+
+```
 # Drawbacks of C
 
 
