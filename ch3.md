@@ -206,11 +206,12 @@ int strcmp(const char *s1, const char *s2)
 }
 
 ```
+## Memory allocation
 
 # Advanced cases
 
-## function return type
-return type defaults to ‘int’  
+## Function return type
+Function return type defaults to ‘int’  
 ```c
 #include <stdio.h>
 #include <limits.h>
@@ -228,6 +229,37 @@ int main()
 }
 
 ```
+## inline
+*an inline function is as fast as Macro.*
+```c
+#include <stdio.h>
+
+static inline int
+inc(int *a)
+{
+    return (*a)++;
+}
+
+
+int main(void)
+{
+    int b = 2;
+
+    inc(&b);
+    printf("b is %d.\n", b);
+}
+
+```
+
+```
+extern int inc(int *a);
+inline int inc(int *a)
+{
+    return (*a)++;
+}
+```
+
+in both of these common cases, the program behaves the same, except for its <b>speed</b>.
 # Drawbacks of C
 
 
