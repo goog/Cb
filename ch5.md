@@ -53,4 +53,46 @@ void *thread(void *vargp)
 ```
 ### 2.1 pthread management
 ### 2.2 pthread mutex
+
+Mutexes are used to prevent data inconsistencies due to race condition.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+
+void *thread_func();
+pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
+int count = 0;
+
+int main()
+{
+    int rc1, rc2;
+    pthread_t thread1, thread2;
+
+    if(rc1 = pthread_create(&thread1, NULL, thread_func, NULL))
+    {
+        printf("thread1 create failed:%d.\n", rc1);
+    }
+
+    if(rc2 = pthread_create(&thread2, NULL, thread_func, NULL))
+    {
+        printf("thread2 create failed:%d.\n", rc1);
+    }
+
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
+
+}
+
+
+void *thread_func()
+{
+    pthread_mutex_lock(&mutex1);
+    count++;
+    printf("counter value: %d.\n", count);
+    pthread_mutex_unlock(&mutex1);
+}
+
+```
 ### 2.3 pthread conditional variable
