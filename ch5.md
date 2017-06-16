@@ -1,6 +1,14 @@
-# chapter5 Pthread
+# Chapter5 Pthread
 
-## 1 Process and pthread
+## 1 Process and thread
+a single process can contain multiple threads.  
+a thread is a small unit for a scheduler and **clone**s easy.
+
+### why thread
+* light weigh process
+* efficient communication/data exchange
+
+threads share <b>the text of a program, global variable and heap memory, open files</b> in a process
 
 ## 2 Pthread
 a thread maintains its own:  
