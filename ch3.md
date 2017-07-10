@@ -77,7 +77,124 @@ sizeof        |  size                | unary   | 15           | right-to-left
     
 
 
-sequence point  
+sequence point
+
+## Struct
+struct is like build-in type, can be function return.
+```c
+#include <stdio.h>
+
+
+struct a
+{
+    int i;
+};
+
+struct a f(struct a x)
+{
+    struct a r = x;
+    return r;
+}
+
+int main()
+{
+    struct a x = {12};
+    struct a y = f(x);
+
+    printf("%d\n", y.i);
+}
+
+```
+### flexible array
+```c
+#include <stdio.h>
+#include <stddef.h>
+
+struct S{int F_len; double F[];};
+
+int main()
+{
+    //int dd[];
+    //printf("size of dd is %zu.\n", sizeof(dd));
+
+    printf("size of struct S is %zu.\n", sizeof(struct S));
+
+    printf("offset F_len= %zd, F=%zd \n", offsetof(struct S, F_len), offsetof(struct S, F));
+}
+
+```
+
+### struct size
+```c
+#include <stdio.h>
+
+typedef struct structa_tag
+{
+    char c;   
+    short int s;
+} structa_t;
+
+typedef struct structb_tag
+{
+    short int s;
+    char c;
+    int i;
+} structb_t;
+
+typedef struct structc_tag
+{
+    char c;
+    double d;
+    int i;
+} structc_t;
+
+typedef struct structd_tag
+{
+    double d;
+    int i;
+    char s;
+} structd_t;
+
+
+int main()
+{
+    printf("size of structa is %zu.\n", sizeof(structa_t));
+    printf("size of structb is %zu.\n", sizeof(structb_t));
+    printf("size of structc is %zu.\n", sizeof(structc_t));
+    printf("size of structd is %zu.\n", sizeof(structd_t));
+
+}
+
+```
+
+```c
+#include <stdio.h>
+
+struct test
+{
+    int a;
+    double b;
+
+    union 
+    {
+        int c;
+        char name[10];
+    } x;
+
+};
+
+
+int main()
+{
+    struct test bb;
+    //printf("the size of double is %zu.\n", sizeof(double));
+    printf("the size of union is %zu.\n", sizeof(bb.x));
+
+    printf("the size of struct test is %zu.\n", sizeof(struct test));
+
+}
+
+```
 ## Pointer
 
 ```c
